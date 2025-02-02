@@ -1,0 +1,25 @@
+{
+  "name": "react-course",
+  "version": "1.0.0",
+  "description": "this is react course ",
+  "keywords": [],
+  "license": "ISC",
+  "author": "lokesh",
+  "type": "commonjs",
+ 
+  "scripts": {
+    "test": "jest",
+    "start":"parcel index.html",
+    "build":"parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "browserslist" : [
+    "last 2 versions"
+  ]
+}
