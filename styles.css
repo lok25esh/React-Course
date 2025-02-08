@@ -1,5 +1,67 @@
-#heading{
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo{
+    width: 200px;
+}
+
+.nav-items{
+    padding: 0px 20px;
+}
+.nav-items > ul {
+    display: flex;
+    font-size: 24px;
+    list-style-type: none;
+}
+.nav-items > ul > li{
+    padding: 10px;
+    margin: 10px;
+}
+.res-container{
+    display: flex;
+  
+}
+.res-card{
+    margin: 10px;
+    padding: 5px;
+    width: 200px;
+ 
+    background-color: antiquewhite;
+    
+}
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.search{
+    padding: 10px;
+}
+
+.res-logo{
+    width: 100%;
+    
+}
+
+.filter-btn{
+
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.btn{
+    padding: 0px 20px;
+    width: 100px;
+    height: 25px;
     color: red;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: larger;
+    margin-top: 46px;
+    cursor: pointer;
+}
+
+.filter{
+    margin-top: 15px;
+    display: flex;
+    
 }
