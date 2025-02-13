@@ -1,6 +1,6 @@
 import { logoUrl } from "../utils/constants";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 //*Lets create header component where Logo components and nav items will be in it 
 const Header = () => {
@@ -12,9 +12,16 @@ const [loginBtn,setLogin] = useState("Login");
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Contactus</li>
+                    <li>
+                       <Link to="/">homepage</Link>
+                        </li>
+
+                    <li>
+                    <Link to="/about">About</Link> 
+                        </li>
+                    <li>
+                      <Link to="/contactus">Contactus</Link>  
+                    </li>
                     <li>Cart</li>
                 </ul>
     

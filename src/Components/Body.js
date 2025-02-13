@@ -1,10 +1,10 @@
 import RestaurentCard from "./RestaurentCard";
 import { useState,useEffect } from "react";
-import resObj from "../utils/mockData";
+import { Link } from "react-router-dom";
 
 
 const Body = () => {
-    const [list,setList] = useState(resObj)
+    const [list,setList] = useState([])
 
     const[searchtext,setSearchtext] = useState("");
 
@@ -14,12 +14,18 @@ const Body = () => {
     },[]);
 
    const fetchData = async () => {
-          const data = await fetch("");
+          const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
           const json = await data.json();
-          console.log(json);
+        //   console.log(json);
+        
+        //   console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
-   
+    // data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+   //data.cards[4].card.card.gridElements.infoWithStyle.restaurants[0].info.cloudinaryImageId
+   //[0].info.name
+//    [0].info.avgRating
    
     if(list.length===0){
         return <h1>Loading....</h1>
@@ -32,13 +38,13 @@ const Body = () => {
                 <div className="serach">
                     <input type="text" className="search-box" value={searchtext}
                     onChange={(e)=>{
-                        setSearchtext(e.target.value)
+                        setSearchtext(e.target.value.toLocaleLowerCase())
                     }}/>
                     <button onClick={()=>{
                         
                        const filteredData = list.filter(
                         (res)=> {
-                          return  res.data.name.toLowerCase().includes(searchtext);
+                          return  res.info.name.toLowerCase().includes(searchtext);
 
                         }
                        
@@ -52,7 +58,7 @@ const Body = () => {
                 <button className="filter-btn" 
                 onClick={()=>{
                         const filteredlist = list.filter(
-                            (res)=>res.data.rating>4
+                            (res)=>res.info.avgRating>4
 
                         );
                      setList(filteredlist);
@@ -73,7 +79,7 @@ const Body = () => {
 
                 {
     list.map((restaurent) => (
-        <RestaurentCard key={restaurent.data.id} resData={restaurent} />
+      <Link key={restaurent.info.id} to={"/restaurentmenu/"+restaurent.info.id}>  <RestaurentCard  resData={restaurent} /></Link>
     ))
 }
                        

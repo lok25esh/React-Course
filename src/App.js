@@ -1,8 +1,14 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./Components/Header.js"
-import Body from "./Components/Body.js"
+import Header from "./Components/Header.js";
+import Body from "./Components/Body.js";
+import About from "./Components/About.js";
+import ContactUs from "./Components/ContactUs.js"
+import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom"; 
+import Error from "./Components/Error.js";
+import RestaurentMenu from "./Components/RestaurentMenu.js";
+
 // import { createRoot } from "react-dom/client";
 
 //Example 01
@@ -15,7 +21,7 @@ import Body from "./Components/Body.js"
 /*
 *<div id ="parent">
     <div id ="child">
-    <h1>I m h1 tag <h1/>
+    <h1>I m h1 tag <h1/>Remove-Item -Force package-lock.json
     </div> 
 </div>
 *
@@ -283,12 +289,43 @@ data:{
 
 //*Lets create an App component where our entire other components will be in it 
 const AppLayout = () => {
-    return <div className="app">
+    return (<div className="app">
         <Header/>
-        <Body/>
+        <Outlet/>
     </div>
-}
+    );
+};
 
+const appRouter = createBrowserRouter([
+    {
+        path:"/",
+        element:<AppLayout/>,
+        children:[
+            {
+                path:"/",
+                element:<Body/>
+            },
+            {
+                path:"/about",
+                element: <About/>
+            },
+            {
+                path:"/contactus",
+                element:<ContactUs/>
+        
+            },
+            {
+                path:"/restaurentmenu/:resID",
+                element:<RestaurentMenu/>
+        
+            }
 
-root.render(<AppLayout/>);
+        ],
+        errorElement: <Error/>
+
+    },
+    
+])
+
+root.render(<RouterProvider router={appRouter}/>);
 
