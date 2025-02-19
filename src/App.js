@@ -5,9 +5,10 @@ import Header from "./Components/Header.js";
 import Body from "./Components/Body.js";
 import About from "./Components/About.js";
 import ContactUs from "./Components/ContactUs.js"
-import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom"; 
+import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";      
 import Error from "./Components/Error.js";
 import RestaurentMenu from "./Components/RestaurentMenu.js";
+
 
 // import { createRoot } from "react-dom/client";
 
@@ -290,8 +291,10 @@ data:{
 //*Lets create an App component where our entire other components will be in it 
 const AppLayout = () => {
     return (<div className="app">
+
         <Header/>
         <Outlet/>
+
     </div>
     );
 };

@@ -1,7 +1,7 @@
 import RestaurentCard from "./RestaurentCard";
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [list,setList] = useState([])
@@ -26,21 +26,25 @@ const Body = () => {
    //data.cards[4].card.card.gridElements.infoWithStyle.restaurants[0].info.cloudinaryImageId
    //[0].info.name
 //    [0].info.avgRating
-   
+const onlineStatus = useOnlineStatus();
+if(onlineStatus === false){
+    return <h1>Looks like you have lost your internet Connection.Please Try Again </h1>
+}
     if(list.length===0){
         return <h1>Loading....</h1>
     }
+    
     return (
         <div className="body">
             
-            <div className="filter">
+            <div className="filter flex">
 
-                <div className="serach">
-                    <input type="text" className="search-box" value={searchtext}
+                <div className="serach m-4 p-4">
+                    <input type="text" className="border border-solid border-black" value={searchtext}
                     onChange={(e)=>{
                         setSearchtext(e.target.value.toLocaleLowerCase())
                     }}/>
-                    <button onClick={()=>{
+                    <button className="px-4 py-2 bg-green-200 m-4 rounded-lg" onClick={()=>{
                         
                        const filteredData = list.filter(
                         (res)=> {
@@ -55,7 +59,9 @@ const Body = () => {
                     }}>Search</button>
 
                 </div>
-                <button className="filter-btn" 
+                <div className="serach m-4 p-4 flex items-center">
+
+                <button className="px-4 py-2 bg-gray-100 rounded-lg " 
                 onClick={()=>{
                         const filteredlist = list.filter(
                             (res)=>res.info.avgRating>4
@@ -65,8 +71,10 @@ const Body = () => {
                 }
                     
                 }> Top Rated Restaurents </button>
+                </div>
+                
             </div>
-            <div className="res-container">
+            <div className="res-container flex flex-wrap ">
                 {/* //Here we will add another component  */}
                 {/* //Restaurantcard will build as new component*/}
                 {/* <RestaurentCard name="Meghana foods" cusines="Biriyani" avgTime="30" rating ="4"/>   *here are we ar passing the props as an arguments these will be passed to the restaurent component as a object  */}
@@ -79,7 +87,11 @@ const Body = () => {
 
                 {
     list.map((restaurent) => (
-      <Link key={restaurent.info.id} to={"/restaurentmenu/"+restaurent.info.id}>  <RestaurentCard  resData={restaurent} /></Link>
+      <Link key={restaurent.info.id} to={"/restaurentmenu/"+restaurent.info.id}> 
+      
+       <RestaurentCard  resData={restaurent} />
+       
+       </Link>
     ))
 }
                        

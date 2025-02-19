@@ -225,3 +225,96 @@ root.render(<RouterProvider router={appRouter}/>);
 - initially key is in restaurentcard component 
 - later on it is in link component 
 - why? make sure that your key should be in parent componenet.
+
+# Class Componenets 
+
+- class based components are similar to functional based components 
+#### How to declare ?
+- class UserClass extends React.Component{
+    
+}
+
+- you need to extend react.component so that brwser will come to know i,e is a component 
+- will have a render method which will return a piece of  JSX 
+
+#### how to pass props inside 
+- in class componenet we can pass props using constructor 
+- class UserClass extends React.Component{
+
+    constructor(props){
+        super(props); 
+        
+    }
+
+#### Why super(props)
+- In a React class component, when you extend React.Component, you need to call super(props) in your constructor to properly initialize the parent class with the component's props.
+
+Why super(props) is Necessary
+Initialize the Parent Class:
+
+When you call super(props), you are invoking the constructor of the parent class (React.Component) and passing the props to it.
+This ensures that the parent class sets up the component properly, including initializing this.props.
+Accessing this.props in the Constructor:
+
+Without passing props to super(), this.props will be undefined in the constructor.
+If you try to access this.props inside your constructor without calling super(props), you'll run into issues because the base class hasn’t been properly initialized with the props.
+Consistent Behavior:
+
+React expects the props to be passed to the base class constructor so that they can be available throughout the component's lifecycle.
+
+- U can access props by using this
+
+# Custom Hooks 
+
+#### What is the use of custom hooks ?
+- Initially if you take restaurent menu componennt it uses hooks from the library
+- it concerned about how its getting and data and displaying the data.
+- if we write custom hooks then it is not worried how we are getting the data and our code will be more optimized 
+
+
+#### Creating a feature whether user is online or offline 
+
+
+
+
+
+
+# Tailwind CSS 
+
+- Tailwind is the new way of styling our pages 
+- frst we need to configure tailwind in our project based on the webpack we use eg vite,parcel etc
+-  content: ["./src/**/*.{html,js}"], meaning we can use tailwind in html, js,ts,jsx,tsx files where ever you find these files 
+- we are going to add tailwindcss using classnames 
+- Inorder to reduce the width of logo jst write w-8
+
+# Higher Order Components 
+
+- it is nothing but a javascript function which takes another component as a parameter it will return another component 
+- it is used for enhancing(on top of it ) the component it does not change the the component 
+- So now we have restaurant card we need to add a promoted label to it 
+- so noe we are enhancing or component we can do it by using hogh order components 
+
+#### RestaurentCard.js
+- const withPromotedLabel = (resraurantCard)={
+     return (props)=>{
+        return (
+         <div>
+         <label>Promoted<label/>
+         <RestaurenCard {...props}/>
+         <div/>
+        )
+     }
+}
+
+- it is again returning a restaurencard component by adding promoted label to it
+
+#### Body.js
+const RestaurentCardPromoted = withPromotedLabel(restaurentCard)
+- list.map((restaurent) => (
+      <Link key={restaurent.info.id} to={"/restaurentmenu/"+restaurent.info.id}> 
+      {
+        restaurent.data.promoted ? <RestaurentCardPromoted resData={restaurent} /> :  <RestaurentCard  resData={restaurent} />
+      }
+      
+       
+       </Link>

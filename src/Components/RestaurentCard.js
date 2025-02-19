@@ -9,9 +9,9 @@ const RestaurentCard = (props) => {
    
     // const deliveryTime = resData?.info?.sla?.deliveryTime;
     return (
-        <div className="res-card">
-            <img className="res-logo" alt="res-logo" src= {resURL+cloudinaryImageId} />
-            <h3>{name}</h3>  {/**now we can directly write name as we destructured it  */}
+        <div className="m-3 p-4 w-[250px] bg-gray-100 shadow-lg ">
+            <img className="res-logo  rounded-md" alt="res-logo" src= {resURL+cloudinaryImageId} />
+            <h3 className="font-bold py-4 text-md">{name}</h3>  {/**now we can directly write name as we destructured it  */}
             <h4>{cuisines?.join(", ")}</h4>
             <h4> {sla?.slaString} seconds</h4>
             <h4>{avgRating} rating</h4>
