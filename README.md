@@ -22,7 +22,7 @@ let resObj =[]; Normal variable
 #### step 3 
 - as we passed nothing as default value we do not get anything on the UI 
 - so pass the data in the function 
-- const[resObj] = useState([
+''' const[resObj] = useState([
     {
 
 data:{
@@ -34,7 +34,7 @@ data:{
     rating:"3"
 }
     }
-])
+])'''
 - now we will get the data on UI    - this state varibale 
 
 - let resObj = [
