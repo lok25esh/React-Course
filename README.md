@@ -1,4 +1,6 @@
 # React-Course
+## createRoot
+- it creates a root to display react components inside a browser DOM node 
 ## Reat Hooks 
 - Normal JS Function 
 - There are 2 imp hooks 
